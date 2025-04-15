@@ -1,34 +1,35 @@
-<!-- item_algorithm.xml -->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="@color/light_sandy"
     app:strokeColor="@color/black"
-    app:strokeWidth="1dp">
+    app:strokeWidth="1dp"
+    app:cardPreventCornerOverlap="false">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/light_sandy">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Название алгоритма"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+<TextView
+android:id="@+id/titleTextView"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:textColor="@color/black"
+android:textSize="18sp"
+android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/difficultyTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Сложность: Easy"
-            android:textColor="@color/gray"/>
+<TextView
+android:id="@+id/difficultyTextView"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="4dp"
+android:textColor="@color/gray"/>
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>

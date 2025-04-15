@@ -1,11 +1,16 @@
 package com.example.algorithms_android_app;
 
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -40,10 +45,18 @@ public class AlgorithmAdapter extends RecyclerView.Adapter<AlgorithmAdapter.View
         Algorithm algorithm = algorithms.get(position);
         holder.titleTextView.setText(algorithm.getTitle());
         holder.difficultyTextView.setText("Сложность: " + algorithm.getDifficulty());
-    }
 
+        holder.itemView.setOnClickListener(v -> {
+            AlgorithmDetailWindow fragment = AlgorithmDetailWindow.newInstance(algorithm);
+
+            // Показываем как диалог
+            FragmentManager fm = ((AppCompatActivity)v.getContext()).getSupportFragmentManager();
+            fragment.show(fm, "algorithm_detail");
+        });
+    }
     @Override
     public int getItemCount() {
         return algorithms.size();
     }
+
 }

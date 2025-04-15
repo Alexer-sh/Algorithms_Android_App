@@ -6,5 +6,19 @@
     </style>
 
     <style name="Theme.Algorithms_Android_App" parent="Base.Theme.Algorithms_Android_App" />
+    <!-- themes.xml -->
+    <style name="Theme.AlgorithmsApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Убиваем фиолетовый навсегда -->
+        <item name="colorPrimary">@color/light_sandy</item>
+        <item name="colorPrimaryVariant">@color/sandy</item>
+        <item name="colorOnPrimary">@color/black</item>
 
+        <!-- Для MaterialButton -->
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/sandy</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
