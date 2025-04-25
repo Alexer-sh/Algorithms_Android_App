@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class AlgorithmAdapter extends RecyclerView.Adapter<AlgorithmAdapter.ViewHolder> {
+public class AlgorithmAdapter extends RecyclerView.Adapter<AlgorithmAdapter.ViewHolder> {   //Тупо распиливание алгоритмов на плитки кликабельные
     private final List<Algorithm> algorithms;
 
     public AlgorithmAdapter(List<Algorithm> algorithms) {
@@ -22,12 +22,12 @@ public class AlgorithmAdapter extends RecyclerView.Adapter<AlgorithmAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView titleTextView;  // Добавляем final
+        final TextView titleTextView;
         final TextView difficultyTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.titleTextView);  // Идентификаторы должны совпадать с item_algorithm.xml
+            titleTextView = itemView.findViewById(R.id.titleTextView);
             difficultyTextView = itemView.findViewById(R.id.difficultyTextView);
         }
     }

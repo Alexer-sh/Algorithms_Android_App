@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/code_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Код алгоритма"/>
+
+    <!-- Контейнер с горизонтальной и вертикальной прокруткой -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:fillViewport="true">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical|horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/code_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textSize="14sp"
+                    android:background="#F5F5F5"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+
+    <!-- Кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/copy_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Скопировать"
+            android:backgroundTint="@color/sandy"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/close_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Закрыть"
+            android:backgroundTint="#DDDDDD"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+</LinearLayout>

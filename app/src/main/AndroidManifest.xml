@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Algorithms_Android_App"
         tools:targetApi="31" >
         <activity
-            android:name="AlgorithmsListActivity"
+            android:name=".AlgorithmsListActivityPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

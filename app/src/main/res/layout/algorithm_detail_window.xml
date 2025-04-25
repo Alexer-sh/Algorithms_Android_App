@@ -16,22 +16,47 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
+        <LinearLayout
+            android:id="@+id/description_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Описание"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/arrow_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_arrow_down"/>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/detail_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16sp"/>
+            android:layout_marginTop="0dp"
+            android:textSize="16sp"
+            android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/detail_code"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/show_code_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="monospace"
-            android:textSize="14sp"
-            android:background="#F5F5F5"
-            android:padding="12dp"/>
+            android:layout_marginTop="16dp"
+            android:text="Показать код"
+            android:backgroundTint="@color/sandy"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/close_button"
@@ -42,8 +67,6 @@
             android:layout_marginTop="40dp"
             android:background="@color/sandy"
             android:text="Закрыть"
-            android:textColor="@color/black"
-            />
-
+            android:textColor="@color/black"/>
     </LinearLayout>
 </ScrollView>

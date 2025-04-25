@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
+import java.io.Console;
 import java.io.Serializable;
 
 public class AlgorithmDetailWindow extends DialogFragment {
@@ -25,21 +29,39 @@ public class AlgorithmDetailWindow extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Надуваем макет
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {//Тупо распиливание на объекты для взаимодействия с интерфейсом
         View view = inflater.inflate(R.layout.algorithm_detail_window, container, false);
 
         Algorithm algorithm = (Algorithm) getArguments().getSerializable(ARG_ALGORITHM);
 
         TextView title = view.findViewById(R.id.detail_title);
         TextView description = view.findViewById(R.id.detail_description);
-        TextView codeExample = view.findViewById(R.id.detail_code);
+        description.setText(algorithm.getDescription());
+        ImageView arrowIcon = view.findViewById(R.id.arrow_icon);
+        LinearLayout descriptionHeader = view.findViewById(R.id.description_header);
 
         title.setText(algorithm.getTitle());
-        description.setText(algorithm.getDescription());
-        codeExample.setText(algorithm.getCodeSnippet());
+        Button showCodeButton = view.findViewById(R.id.show_code_button);
+        showCodeButton.setOnClickListener(v -> {
+            AlgorithmCodePage dialog = AlgorithmCodePage.newInstance(
+                    algorithm.getTitle(),
+                    algorithm.getCodeSnippet()
+            );
+            dialog.show(getParentFragmentManager(), "code_dialog");
+        });
         view.findViewById(R.id.close_button).setOnClickListener(v -> dismiss());
+
+        // Обработчик для выпадающего описания
+        descriptionHeader.setOnClickListener(v -> {
+            if (description.getVisibility() == View.VISIBLE) {
+                description.setVisibility(View.GONE);
+                arrowIcon.setImageResource(R.drawable.ic_arrow_down);
+            } else {
+                description.setVisibility(View.VISIBLE);
+                arrowIcon.setImageResource(R.drawable.ic_arrow_up);
+            }
+        });
+
         return view;
     }
 

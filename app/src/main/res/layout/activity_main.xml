@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical"> <!-- Белый фон -->
-
-    <!-- Логотип (используем стандартную иконку, если нет своей) -->
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/logo"

@@ -3,12 +3,14 @@ import java.io.Serializable;
 public class Algorithm implements Serializable{
     private String title;
     private String difficulty;
-    public Algorithm(String title, String difficulty) {
+    private String description;
+    public String codeSnippet;//Временно из-за хардкода, потом будет private
+    public Algorithm(String title, String difficulty, String description) {
         this.title = title;
         this.difficulty = difficulty;
+        this.description = description;
     }
-    private String description;
-    private String codeSnippet;
+
     public String getTitle() { return title; }
     public String getDifficulty() { return difficulty; }
     public String getDescription(){ return description; }

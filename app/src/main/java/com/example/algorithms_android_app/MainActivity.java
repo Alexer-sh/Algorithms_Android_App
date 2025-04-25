@@ -20,11 +20,10 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Создаем интент для перехода
-                Intent intent = new Intent(MainActivity.this, AlgorithmsListActivity.class);
+                // Сразу едем к списку алгосов по кнопке
+                Intent intent = new Intent(MainActivity.this, AlgorithmsListActivityPage.class);
                 startActivity(intent);
-                finish(); // закрывает MainActivity
-                // Опционально: анимация перехода
+                finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
