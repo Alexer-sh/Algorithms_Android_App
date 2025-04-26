@@ -62,11 +62,10 @@
             android:id="@+id/close_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.App.Button"
+            android:layout_marginTop="20dp"
             android:layout_gravity="end"
-            android:layout_marginTop="40dp"
-            android:background="@color/sandy"
             android:text="Закрыть"
+            android:backgroundTint="@color/sandy"
             android:textColor="@color/black"/>
     </LinearLayout>
 </ScrollView>
