@@ -6,21 +6,41 @@
     android:padding="16dp"
     android:background="@drawable/dialog_background">
 
-    <!-- Заголовок -->
-    <TextView
-        android:id="@+id/code_title"
+    <!-- Заголовок с указанием языка -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Код алгоритма"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
 
-    <!-- Контейнер с горизонтальной и вертикальной прокруткой -->
+        <TextView
+            android:id="@+id/code_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Код алгоритма"/>
+
+        <!-- Бейдж языка программирования -->
+        <TextView
+            android:id="@+id/language_badge"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:text="Python"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Контейнер с прокруткой -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fillViewport="true">
 
         <ScrollView
@@ -32,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/code_content"
                     android:layout_width="wrap_content"
@@ -41,7 +62,6 @@
                     android:background="#F5F5F5"
                     android:padding="12dp"
                     android:textIsSelectable="true"/>
-
             </LinearLayout>
         </ScrollView>
     </HorizontalScrollView>
