@@ -15,6 +15,9 @@
             android:name=".AlgorithmsListActivityPage"
             android:exported="false" />
         <activity
+            android:name=".BinarySearchVisualizationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Algorithms_Android_App" >

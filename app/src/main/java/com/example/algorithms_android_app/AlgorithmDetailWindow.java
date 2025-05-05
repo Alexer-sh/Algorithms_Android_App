@@ -1,5 +1,6 @@
 package com.example.algorithms_android_app;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class AlgorithmDetailWindow extends DialogFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {//Тупо распиливание на объекты для взаимодействия с интерфейсом
@@ -61,7 +63,10 @@ public class AlgorithmDetailWindow extends DialogFragment {
                 arrowIcon.setImageResource(R.drawable.ic_arrow_up);
             }
         });
-
+        Button btnVisualize = view.findViewById(R.id.visualize_button);
+        btnVisualize.setOnClickListener(v -> {
+            //       startActivity(new Intent(this, BinarySearchVisualizationActivity.class));
+        });
         return view;
     }
 

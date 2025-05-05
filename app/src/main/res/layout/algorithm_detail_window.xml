@@ -68,5 +68,15 @@
             android:background="@color/sandy"
             android:text="Закрыть"
             android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/visualize_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Визуализация"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@color/white"/>
+
     </LinearLayout>
 </ScrollView>

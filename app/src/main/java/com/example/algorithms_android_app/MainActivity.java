@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Сразу едем к списку алгосов по кнопке
-                Intent intent = new Intent(MainActivity.this, AlgorithmsListActivityPage.class);
+                Intent intent = new Intent(MainActivity.this, BinarySearchVisualizationActivity.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
