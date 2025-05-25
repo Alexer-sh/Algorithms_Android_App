@@ -29,7 +29,6 @@ public class VisualizationView extends View {
     }
     private final List<StepState> steps = new ArrayList<>();
 
-    // Размер клетки в пикселях (фиксированный для горизонтального скролла)
     private static final int CELL_SIZE = 100;
     private static final int VERTICAL_SPACING = 50;
     private static final int TOP_OFFSET = 100;
@@ -52,7 +51,6 @@ public class VisualizationView extends View {
         labelPaint.setColor(Color.BLACK);
         labelPaint.setTextSize(35);
         labelPaint.setTextAlign(Paint.Align.CENTER);
-        // Включаем полосы прокрутки
         setHorizontalScrollBarEnabled(true);
         setVerticalScrollBarEnabled(true);
     }
@@ -87,7 +85,6 @@ public class VisualizationView extends View {
             StepState st = steps.get(s);
             float y = TOP_OFFSET + s * stepHeight;
             for (int i = 0; i < array.length; i++) {
-                // Цвет ячейки
                 if (i == st.mid) paint.setColor(Color.RED);
                 else if (i == st.low) paint.setColor(Color.GREEN);
                 else if (i == st.high) paint.setColor(Color.BLUE);
@@ -95,10 +92,7 @@ public class VisualizationView extends View {
 
                 float left = i * (CELL_SIZE + 10);
                 canvas.drawRect(left, y, left + CELL_SIZE, y + CELL_SIZE, paint);
-                canvas.drawText(String.valueOf(array[i]),
-                        left + CELL_SIZE / 2,
-                        y + CELL_SIZE / 2 + 15,
-                        textPaint);
+                canvas.drawText(String.valueOf(array[i]), left + CELL_SIZE / 2, y + CELL_SIZE / 2 + 15, textPaint);
 
                 float labelY = y + CELL_SIZE + 20;
                 if (i == st.low)  canvas.drawText("low", left + CELL_SIZE / 2, labelY, labelPaint);
@@ -107,7 +101,6 @@ public class VisualizationView extends View {
             }
         }
 
-        // Сообщение о результате
         if (found) {
             String msg = "Элемент " + target + " найден в массиве с индексом " + mid;
             float yMsg = TOP_OFFSET + steps.size() * (CELL_SIZE + VERTICAL_SPACING) + 30;
@@ -115,19 +108,30 @@ public class VisualizationView extends View {
         }
     }
 
-    public void nextStep() {
-        if (low > high || found) return;
+    // 👇 Этот метод теперь возвращает boolean
+    public boolean nextStep() {
+        if (low > high || found) return true; // Поиск завершён
+
         mid = (low + high) / 2;
         if (array[mid] == target) found = true;
         else if (array[mid] < target) low = mid + 1;
         else high = mid - 1;
+
         steps.add(new StepState(low, high, mid, found));
         requestLayout();
         invalidate();
+
+        return (low > high || found); // true, если поиск завершён
+    }
+    public boolean isFound() {
+        return found;
     }
 
-    public void setArray(int[] array) {
+
+    // 👇 Этот метод ничего не возвращает, инициализирует всё
+    public void setData(int[] array, int target) {
         this.array = array;
+        this.target = target;
         low = 0;
         high = array.length - 1;
         found = false;
@@ -136,9 +140,5 @@ public class VisualizationView extends View {
         steps.add(new StepState(low, high, mid, false));
         requestLayout();
         invalidate();
-    }
-
-    public void setTarget(int target) {
-        this.target = target;
     }
 }

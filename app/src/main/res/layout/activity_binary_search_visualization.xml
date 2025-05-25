@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/content_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -21,6 +22,14 @@
                 android:text="Бинарный поиск"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/target_value_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ищем элемент: "
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
 
             <com.example.algorithms_android_app.VisualizationView
                 android:id="@+id/visualization_view"
@@ -35,6 +44,23 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
                 android:text="Следующий шаг"/>
+
+            <Button
+                android:id="@+id/edit_input_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Изменить входные данные"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/close_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Закрыть"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#F44336"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
 

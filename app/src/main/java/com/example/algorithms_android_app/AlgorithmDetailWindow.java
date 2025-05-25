@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -65,8 +66,15 @@ public class AlgorithmDetailWindow extends DialogFragment {
         });
         Button btnVisualize = view.findViewById(R.id.visualize_button);
         btnVisualize.setOnClickListener(v -> {
-            //       startActivity(new Intent(this, BinarySearchVisualizationActivity.class));
+            if (algorithm.getTitle().toLowerCase().contains("бинарный")) {
+                Intent intent = new Intent(getActivity(), BinarySearchVisualizationActivity.class);
+                startActivity(intent);
+                dismiss();
+            } else {
+                 Toast.makeText(getActivity(), "Визуализация недоступна для этого алгоритма", Toast.LENGTH_SHORT).show();
+            }
         });
+
         return view;
     }
 
