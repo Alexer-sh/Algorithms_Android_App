@@ -17,6 +17,7 @@
         <activity
             android:name=".BinarySearchVisualizationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".BubbleSortVisualizationActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

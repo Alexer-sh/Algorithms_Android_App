@@ -70,8 +70,12 @@ public class AlgorithmDetailWindow extends DialogFragment {
                 Intent intent = new Intent(getActivity(), BinarySearchVisualizationActivity.class);
                 startActivity(intent);
                 dismiss();
-            } else {
-                 Toast.makeText(getActivity(), "Визуализация недоступна для этого алгоритма", Toast.LENGTH_SHORT).show();
+            } else if(algorithm.getTitle().toLowerCase().contains("пузырьком")) {
+                Intent intent = new Intent(getActivity(), BubbleSortVisualizationActivity.class);
+                startActivity(intent);
+                dismiss();
+            } else{
+                Toast.makeText(getActivity(), "Визуализация недоступна для этого алгоритма", Toast.LENGTH_SHORT).show();
             }
         });
 
