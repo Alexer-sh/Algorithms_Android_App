@@ -85,19 +85,36 @@ public class VisualizationView extends View {
             StepState st = steps.get(s);
             float y = TOP_OFFSET + s * stepHeight;
             for (int i = 0; i < array.length; i++) {
-                if (i == st.mid) paint.setColor(Color.RED);
-                else if (i == st.low) paint.setColor(Color.GREEN);
-                else if (i == st.high) paint.setColor(Color.BLUE);
-                else paint.setColor(Color.GRAY);
+                // Базовый цвет для всех ячеек
+                paint.setColor(Color.LTGRAY);
+
+                // Выделение цветом, если индекс совпадает с mid, low или high
+                boolean isMid = (i == st.mid);
+                boolean isLow = (i == st.low);
+                boolean isHigh = (i == st.high);
+
+                if (isMid) paint.setColor(Color.RED);
+                else if (isLow) paint.setColor(Color.rgb(90,238,90));
+                else if (isHigh) paint.setColor(Color.rgb(0, 128, 255));
+
+
+
 
                 float left = i * (CELL_SIZE + 10);
                 canvas.drawRect(left, y, left + CELL_SIZE, y + CELL_SIZE, paint);
+
+                // Рисуем число по центру ячейки
                 canvas.drawText(String.valueOf(array[i]), left + CELL_SIZE / 2, y + CELL_SIZE / 2 + 15, textPaint);
 
+                // Отображаем только один лейбл по приоритету mid > low > high
                 float labelY = y + CELL_SIZE + 20;
-                if (i == st.low)  canvas.drawText("low", left + CELL_SIZE / 2, labelY, labelPaint);
-                if (i == st.mid)  canvas.drawText("mid", left + CELL_SIZE / 2, labelY, labelPaint);
-                if (i == st.high) canvas.drawText("high", left + CELL_SIZE / 2, labelY, labelPaint);
+                if (isMid) {
+                    canvas.drawText("mid", left + CELL_SIZE / 2, labelY, labelPaint);
+                } else if (isLow) {
+                    canvas.drawText("low", left + CELL_SIZE / 2, labelY, labelPaint);
+                } else if (isHigh) {
+                    canvas.drawText("high", left + CELL_SIZE / 2, labelY, labelPaint);
+                }
             }
         }
 
@@ -108,7 +125,7 @@ public class VisualizationView extends View {
         }
     }
 
-    // 👇 Этот метод теперь возвращает boolean
+
     public boolean nextStep() {
         if (low > high || found) return true; // Поиск завершён
 

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// BinarySearchVisualizationActivity.java
 public class BinarySearchVisualizationActivity extends AppCompatActivity {
 
     private VisualizationView visualizationView;
