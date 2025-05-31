@@ -34,14 +34,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Начать сортировку" />
+            android:text="Начать сортировку"
+            android:backgroundTint="@color/sandy_green"
+            android:textColor="@android:color/black"
+            />
 
         <Button
             android:id="@+id/close_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Закрыть" />
+            android:text="Закрыть"
+            android:backgroundTint="@color/sandy_red"
+            android:textColor="@android:color/black"
+            />
 
     </LinearLayout>
 
@@ -72,6 +78,26 @@
             android:progress="7" />
         <!-- max=15 чтобы 0..15 значений, посчитаем скорость из них -->
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/edit_input_button"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Изменить ввод"
+            android:textColor="@android:color/black"
+            android:backgroundTint="#FF9800"
+
+            android:visibility="gone"
+/>
     </LinearLayout>
 
 </LinearLayout>

@@ -22,7 +22,6 @@
             android:textStyle="bold"
             android:text="Код алгоритма"/>
 
-        <!-- Бейдж языка программирования -->
         <TextView
             android:id="@+id/language_badge"
             android:layout_width="67dp"
@@ -89,7 +88,7 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:text="Закрыть"
-            android:backgroundTint="#DDDDDD"
+            android:backgroundTint="@color/sandy_red"
             android:textColor="@color/black"/>
     </LinearLayout>
 </LinearLayout>

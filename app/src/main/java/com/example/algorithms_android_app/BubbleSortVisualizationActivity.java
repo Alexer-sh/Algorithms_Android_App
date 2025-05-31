@@ -1,9 +1,12 @@
 package com.example.algorithms_android_app;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -22,11 +25,11 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
 
     private LinearLayout container;
     private HorizontalScrollView scrollView;
-    private Button startSortButton, closeButton;
+    private Button startSortButton, closeButton, editInputButton;
     private SeekBar speedSeekBar;
     private TextView speedLabel;
 
-    private float speedMultiplier = 1.0f; // 1x скорость по умолчанию
+    private float speedMultiplier = 1.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +42,13 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
         closeButton = findViewById(R.id.close_button);
         speedSeekBar = findViewById(R.id.speed_seekbar);
         speedLabel = findViewById(R.id.speed_label);
+        editInputButton = findViewById(R.id.edit_input_button);
 
         renderBars();
 
         startSortButton.setOnClickListener(v -> {
             startSortButton.setEnabled(false);
+            editInputButton.setVisibility(View.GONE);
             i = 0;
             j = 0;
             swapped = false;
@@ -53,21 +58,19 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
         closeButton.setOnClickListener(v -> finish());
 
         speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            // max = 15, mapping 0..15 -> speed 0.25x..4x (логика ниже)
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 speedMultiplier = mapProgressToSpeed(progress);
                 speedLabel.setText(String.format("Скорость: %.2fx", speedMultiplier));
             }
-
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
+        editInputButton.setOnClickListener(v -> showEditDialog());
     }
 
     private float mapProgressToSpeed(int progress) {
-        // Линейно маппим прогресс (0..15) в скорость 0.25..4
-        // Чтобы 0 -> 0.25, 15 -> 4
         return 0.25f + (4f - 0.25f) * progress / 15f;
     }
 
@@ -94,9 +97,9 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
             bar.setLayoutParams(barParams);
 
             if ((k == j || k == j + 1) && i < array.length) {
-                bar.setBackgroundColor(0xFFFF4081); // выделение розовым
+                bar.setBackgroundColor(0xFFFF4081);
             } else {
-                bar.setBackgroundColor(0xFF3F51B5); // синий цвет
+                bar.setBackgroundColor(0xFF3F51B5);
             }
 
             TextView label = new TextView(this);
@@ -109,7 +112,6 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
             container.addView(barLayout);
         }
 
-        // Прокручиваем, если надо
         int scrollToX = j * (dpToPx(25) + dpToPx(8));
         if (scrollToX > scrollView.getScrollX() + scrollView.getWidth()) {
             scrollView.smoothScrollTo(scrollToX, 0);
@@ -132,6 +134,7 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
                 if (!swapped) {
                     Toast.makeText(this, "Сортировка завершена!", Toast.LENGTH_SHORT).show();
                     startSortButton.setEnabled(true);
+                    editInputButton.setVisibility(View.VISIBLE);
                 } else {
                     swapped = false;
                     j = 0;
@@ -143,10 +146,90 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Сортировка завершена!", Toast.LENGTH_SHORT).show();
             startSortButton.setEnabled(true);
+            editInputButton.setVisibility(View.VISIBLE);
         }
     }
 
+    private void showEditDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Введите размер массива");
+
+        EditText sizeInput = new EditText(this);
+        sizeInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        sizeInput.setHint("Размер массива");
+        builder.setView(sizeInput);
+
+        builder.setPositiveButton("Далее", (dialog, which) -> {
+            String sizeStr = sizeInput.getText().toString();
+            if (sizeStr.isEmpty()) {
+                Toast.makeText(this, "Введите размер массива", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int size = Integer.parseInt(sizeStr);
+            if (size <= 0 || size > 50) {
+                Toast.makeText(this, "Размер должен быть от 1 до 50", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            showArrayInputDialog(size);
+        });
+
+        builder.setNegativeButton("Отмена", null);
+        builder.show();
+    }
+
+    private void showArrayInputDialog(int size) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Введите элементы массива");
+
+        HorizontalScrollView scrollView = new HorizontalScrollView(this);
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.HORIZONTAL);
+
+        EditText[] inputs = new EditText[size];
+        for (int k = 0; k < size; k++) {
+            EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            input.setEms(5);
+            input.setHint("[" + k + "]");
+            layout.addView(input);
+            inputs[k] = input;
+        }
+        scrollView.addView(layout);
+
+        LinearLayout wrapper = new LinearLayout(this);
+        wrapper.setOrientation(LinearLayout.VERTICAL);
+        wrapper.addView(scrollView);
+
+        builder.setView(wrapper);
+
+        builder.setPositiveButton("Применить", (dialog, which) -> {
+            int[] newArr = new int[size];
+            for (int k = 0; k < size; k++) {
+                String val = inputs[k].getText().toString();
+                if (val.isEmpty()) {
+                    newArr[k] = 0;
+                } else {
+                    try {
+                        newArr[k] = Integer.parseInt(val);
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(this, "Некорректный ввод: " + val, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+            array = newArr;
+            i = 0; j = 0;
+            renderBars();
+            startSortButton.setEnabled(true);
+            editInputButton.setVisibility(View.GONE);
+        });
+
+        builder.setNegativeButton("Отмена", null);
+        builder.show();
+    }
+
     private int dpToPx(int dp) {
-        return (int)(dp * getResources().getDisplayMetrics().density);
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
     }
 }
