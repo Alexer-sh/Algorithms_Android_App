@@ -4,11 +4,12 @@ public class Algorithm implements Serializable{
     private String title;
     private String difficulty;
     private String description;
-    public String codeSnippet;//Временно из-за хардкода, потом будет private
-    public Algorithm(String title, String difficulty, String description) {
+    private String codeSnippet;
+    public Algorithm(String title, String difficulty, String description,String codeSnippet) {
         this.title = title;
         this.difficulty = difficulty;
         this.description = description;
+        this.codeSnippet = codeSnippet;
     }
 
     public String getTitle() { return title; }

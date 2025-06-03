@@ -17,7 +17,7 @@ public class BinarySearchVisualizationActivity extends AppCompatActivity {
     private VisualizationView visualizationView;
     private Button nextStepButton, editInputButton;
     private TextView targetValueText;
-    private int[] array = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+    private int[] array = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};  //Базовый пример
     private int target = 7;
     private Button closeButton;
 
@@ -49,7 +49,7 @@ public class BinarySearchVisualizationActivity extends AppCompatActivity {
 
         editInputButton.setOnClickListener(v -> showEditDialog());
     }
-
+    // Методы для изменения параметров и массива поиска
     private void showEditDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Введите размер массива");
@@ -104,7 +104,7 @@ public class BinarySearchVisualizationActivity extends AppCompatActivity {
                 newArray[i] = val.isEmpty() ? 0 : Integer.parseInt(val);
             }
 
-            // 🔍 Проверка на строго возрастающий массив
+            //  Защита от идиота
             for (int i = 1; i < size; i++) {
                 if (newArray[i] < newArray[i - 1]) {
                     new AlertDialog.Builder(this)

@@ -17,9 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 
-public class BubbleSortVisualizationActivity extends AppCompatActivity {
+public class BubbleSortVisualizationActivity extends AppCompatActivity {    //It just works, somehow...
 
-    private int[] array = {10, 7, 3, 15, 9, 2, 13, 6, 8, 5};
+    private int[] array = {10, 7, 3, 15, 9, 2, 13, 6, 8, 5};    // Массив для примера
     private int i = 0, j = 0;
     private boolean swapped = false;
 
@@ -69,7 +69,7 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
 
         editInputButton.setOnClickListener(v -> showEditDialog());
     }
-
+    // Работает и не трогай
     private float mapProgressToSpeed(int progress) {
         return 0.25f + (4f - 0.25f) * progress / 15f;
     }
@@ -149,7 +149,7 @@ public class BubbleSortVisualizationActivity extends AppCompatActivity {
             editInputButton.setVisibility(View.VISIBLE);
         }
     }
-
+    // Методы для изменения массива для сортировки
     private void showEditDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Введите размер массива");

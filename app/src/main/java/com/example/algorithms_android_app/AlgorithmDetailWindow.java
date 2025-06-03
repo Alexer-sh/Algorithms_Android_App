@@ -75,7 +75,7 @@ public class AlgorithmDetailWindow extends DialogFragment {
                 startActivity(intent);
                 dismiss();
             } else{
-                Toast.makeText(getActivity(), "Визуализация недоступна для этого алгоритма", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Визуализация недоступна для этого алгоритма", Toast.LENGTH_SHORT).show();    //Cry about it, bro
             }
         });
 

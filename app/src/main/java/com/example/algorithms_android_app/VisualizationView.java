@@ -85,7 +85,6 @@ public class VisualizationView extends View {
             StepState st = steps.get(s);
             float y = TOP_OFFSET + s * stepHeight;
             for (int i = 0; i < array.length; i++) {
-                // Базовый цвет для всех ячеек
                 paint.setColor(Color.LTGRAY);
 
                 // Выделение цветом, если индекс совпадает с mid, low или high
@@ -103,7 +102,6 @@ public class VisualizationView extends View {
                 float left = i * (CELL_SIZE + 10);
                 canvas.drawRect(left, y, left + CELL_SIZE, y + CELL_SIZE, paint);
 
-                // Рисуем число по центру ячейки
                 canvas.drawText(String.valueOf(array[i]), left + CELL_SIZE / 2, y + CELL_SIZE / 2 + 15, textPaint);
 
                 // Отображаем только один лейбл по приоритету mid > low > high
@@ -138,14 +136,12 @@ public class VisualizationView extends View {
         requestLayout();
         invalidate();
 
-        return (low > high || found); // true, если поиск завершён
+        return (low > high || found);
     }
     public boolean isFound() {
         return found;
     }
 
-
-    // 👇 Этот метод ничего не возвращает, инициализирует всё
     public void setData(int[] array, int target) {
         this.array = array;
         this.target = target;

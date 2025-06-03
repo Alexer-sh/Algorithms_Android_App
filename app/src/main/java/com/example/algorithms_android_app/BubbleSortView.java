@@ -10,8 +10,7 @@ import android.view.View;
 public class BubbleSortView extends View {
     private int[] array;
     private Paint paintBar, paintText, paintHighlight;
-    private int i = 0, j = 0;
-    private boolean sorted = false;
+    private int i = 0;
 
     public BubbleSortView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -29,39 +28,7 @@ public class BubbleSortView extends View {
         paintHighlight.setColor(Color.RED);
     }
 
-    public void setData(int[] data) {
-        this.array = data.clone();
-        i = 0;
-        j = 0;
-        sorted = false;
-        post(stepRunnable);
-    }
-
-    private final Runnable stepRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (sorted || array == null) return;
-            if (i < array.length - 1) {
-                if (j < array.length - i - 1) {
-                    if (array[j] > array[j + 1]) {
-                        int temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
-                    }
-                    j++;
-                } else {
-                    j = 0;
-                    i++;
-                }
-                invalidate();
-                postDelayed(this, 500);
-            } else {
-                sorted = true;
-                invalidate();
-            }
-        }
-    };
-
+    // Рисовалка массива для сортировки (по сути ваще для любой, а не только конкретно этой)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -82,7 +49,7 @@ public class BubbleSortView extends View {
             float right = left + barWidth;
             float bottom = height - 60;
 
-            Paint currentPaint = (k == j || k == j + 1) ? paintHighlight : paintBar;
+            Paint currentPaint = (k == i || k == i + 1) ? paintHighlight : paintBar;
             canvas.drawRect(left, top, right, bottom, currentPaint);
             canvas.drawText(String.valueOf(array[k]), left + barWidth / 2, height - 20, paintText);
         }
